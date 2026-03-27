@@ -1,0 +1,32 @@
+services:
+
+  api:
+    build: .
+    container_name: monapi
+    ports:
+      - "8000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=MonApiDb;User Id=sa;Password=MonMotDePasse123!;TrustServerCertificate=True
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: monapi-db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=MonMotDePasse123!
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqldata:/var/lib/sqlserver/data
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools18/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "MonMotDePasse123!", "-Q", "SELECT 1", "-No"]
+      interval: 10s
+      timeout: 5s
+      retries: 8
+
+volumes:
+  sqldata:
