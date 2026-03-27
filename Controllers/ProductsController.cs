@@ -30,6 +30,14 @@ public class ProductsController : ControllerBase
         await _db.SaveChangesAsync();
         return CreatedAtAction(nameof(GetById), new { id = product.Id }, product);
     }
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(int id, Product product)
+    {
+        if (id != product.Id) return BadRequest();
+        _db.Entry(product).State = EntityState.Modified;
+        await _db.SaveChangesAsync();
+        return NoContent();
+    }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)

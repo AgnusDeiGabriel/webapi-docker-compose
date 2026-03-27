@@ -1,0 +1,191 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:       #185FA5;
+  --blue-light: #E6F1FB;
+  --red:        #A32D2D;
+  --red-light:  #FCEBEB;
+  --gray-dark:  #2C2C2A;
+  --gray-mid:   #888780;
+  --gray-light: #F1EFE8;
+  --border:     #D3D1C7;
+  --white:      #ffffff;
+  --radius:     8px;
+  --shadow:     0 1px 4px rgba(0,0,0,0.07);
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  color: var(--gray-dark);
+  background: #F7F6F2;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+.logo { font-weight: 600; font-size: 16px; letter-spacing: -0.3px; }
+.tag {
+  font-size: 11px;
+  background: var(--blue-light);
+  color: var(--blue);
+  padding: 2px 8px;
+  border-radius: 99px;
+}
+
+/* Main */
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+h1 { font-size: 20px; font-weight: 600; }
+
+/* Card */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow);
+}
+.card h2 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--gray-dark);
+}
+
+/* Form */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 0.85rem;
+}
+.form-group label {
+  font-size: 13px;
+  color: var(--gray-mid);
+  font-weight: 500;
+}
+.form-group input {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.form-group input:focus { border-color: var(--blue); }
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: opacity 0.15s, background 0.15s;
+}
+.btn-primary { background: var(--blue); color: var(--white); }
+.btn-primary:hover { opacity: 0.88; }
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--gray-dark);
+}
+.btn-ghost:hover { background: var(--gray-light); }
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: background 0.12s;
+}
+.btn-edit  { color: var(--blue); }
+.btn-edit:hover  { background: var(--blue-light); }
+.btn-delete { color: var(--red); }
+.btn-delete:hover { background: var(--red-light); }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; }
+thead tr { border-bottom: 1px solid var(--border); }
+th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-mid);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 0 10px;
+}
+th:last-child, td:last-child { text-align: right; }
+td {
+  padding: 12px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--gray-light);
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: #FAFAF8; }
+.id-cell { color: var(--gray-mid); font-size: 13px; }
+.price-cell { font-weight: 500; }
+
+/* States */
+.hidden { display: none !important; }
+.empty {
+  text-align: center;
+  color: var(--gray-mid);
+  font-size: 14px;
+  padding: 1.5rem 0 0.5rem;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: var(--gray-dark);
+  color: var(--white);
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100;
+  transition: opacity 0.3s;
+}
+.toast.success { background: #0F6E56; }
+.toast.error   { background: var(--red); }
